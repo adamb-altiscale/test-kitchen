@@ -195,6 +195,9 @@ module Kitchen
         Net::SSH::Disconnect, Net::SSH::AuthenticationFailed
       ]
       retries = options[:ssh_retries] || 3
+      options[:keepalive] = true
+      options[:keepalive_interval] = 45
+      options[:keepalive_maxcount] = 8
 
       begin
         logger.debug("[SSH] opening connection to #{self}")
